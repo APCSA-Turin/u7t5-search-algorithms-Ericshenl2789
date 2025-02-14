@@ -43,7 +43,7 @@ public class RepairSchedule {
         }
         for(int i =0; i <schedule.size(); i++){
             if(schedule.get(i) != null){
-                result.remove(new Integer( schedule.get(i).getMechanicNum()));
+                result.remove(Integer.valueOf(schedule.get(i).getMechanicNum()));
             }
         }
         return result;

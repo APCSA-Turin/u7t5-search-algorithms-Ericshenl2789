@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 
 public class SpellChecker {
+    
     private ArrayList<String> dictionary;
     private int loopCounter = 0 ;
 
@@ -50,6 +51,21 @@ public class SpellChecker {
      *  prints that value out before returning.
      */
     public boolean binarySpellCheck(String word) {
+        int left = 0;
+        int right = dictionary.size() - 1;
+        loopCounter = 0;
+        while(left <= right){
+            loopCounter++;
+            System.out.println(loopCounter);
+            int middleIdx = (left + right)/2;
+            if(dictionary.get(middleIdx).equals(word)){
+                return true;
+            }else if(dictionary.get(middleIdx).compareTo(word) > 0){
+                right = middleIdx - 1;
+            } else if(dictionary.get(middleIdx).compareTo(word) < 0){
+                left = middleIdx + 1;
+            }
+        }
         return false;
     }
 
@@ -81,7 +97,7 @@ public class SpellChecker {
 
         while (!word.equals("q")) {
             if (checker.binarySpellCheck(word)) {
-                System.out.println("-- " + word + " WAS found in the dictionary (so it's spelled correctly)");
+                System.out.println("-- " + word + " WAS found in the dictionary (so it's spelled correctly)" + checker.getLoopCounter());
             } else {
                 System.out.println("-- " + word + " was NOT found in the dictionary (so it's not spelled correctly)");
             }
